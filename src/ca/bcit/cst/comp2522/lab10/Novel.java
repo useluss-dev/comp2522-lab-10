@@ -1,6 +1,5 @@
 package ca.bcit.cst.comp2522.lab10;
 
-
 /**
  * Represents a Novel that stores book information.
  *
@@ -9,22 +8,28 @@ package ca.bcit.cst.comp2522.lab10;
  */
 class Novel
 {
+    private static final int MIN_YEAR_PUBLISHED = 0;
+    private static final int MAX_YEAR_PUBLISHED = 2025;
+
     private final String title;
     private final String author;
     private final int    yearPublished;
 
-
     /**
      * Constructor to initialize the novel's title, author, and publication year.
      *
-     * @param title The title of the novel.
-     * @param author The author of the novel.
+     * @param title         The title of the novel.
+     * @param author        The author of the novel.
      * @param yearPublished The year the novel was published.
      */
     public Novel(final String title,
                  final String author,
                  final int yearPublished)
     {
+        Validator.validateString(title, "title");
+        Validator.validateString(author, "author");
+        Validator.validateIntInRange(yearPublished, 0, 2025, "yearPublished");
+
         this.title         = title;
         this.author        = author;
         this.yearPublished = yearPublished;

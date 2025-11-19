@@ -13,10 +13,8 @@ import java.util.stream.Collectors;
  */
 public class BookStore
 {
-
-
-    private static final int DECADE_LENGTH = 9;
-    private static final int NO_BOOKS_PERCENTAGE = 0;
+    private static final int DECADE_LENGTH         = 9;
+    private static final int NO_BOOKS_PERCENTAGE   = 0;
     private static final int HAVE_BOOKS_PERCENTAGE = 0;
 
     private final String           storeName;
@@ -140,7 +138,8 @@ public class BookStore
     public void printAllTitles()
     {
         novels.stream()
-              .map(n -> n.getTitle().toUpperCase())
+              .map(n -> n.getTitle()
+                         .toUpperCase())
               .forEach(System.out::println);
     }
 
@@ -152,7 +151,9 @@ public class BookStore
     public void printBookTitle(final String title)
     {
         novels.stream()
-              .filter(n -> n.getTitle().toLowerCase().contains(title.toLowerCase()))
+              .filter(n -> n.getTitle()
+                            .toLowerCase()
+                            .contains(title.toLowerCase()))
               .map(Novel::getTitle)
               .forEach(System.out::println);
     }
@@ -171,7 +172,7 @@ public class BookStore
     /**
      * Prints all books published in the given decade.
      *
-     * @param decade The starting year of the decade (e.g., 1990 for the 1990s).
+     * @param decade The starting year of the decade
      */
     public void printGroupByDecade(final int decade)
     {
@@ -198,7 +199,7 @@ public class BookStore
      * Returns true if a book was written in the given year.
      *
      * @param year The year to check.
-     * @return true if there is a book written in the specified year, otherwise false.
+     * @return true if there is a book written in the specified year.
      */
     public boolean isThereABookWrittenBetween(final int year)
     {
@@ -215,7 +216,9 @@ public class BookStore
     public long howManyBooksContain(final String word)
     {
         return novels.stream()
-                     .filter(n -> n.getTitle().toLowerCase().contains(word.toLowerCase()))
+                     .filter(n -> n.getTitle()
+                                   .toLowerCase()
+                                   .contains(word.toLowerCase()))
                      .count();
     }
 
@@ -223,14 +226,17 @@ public class BookStore
      * Returns the percentage of books written between the given years (inclusive).
      *
      * @param first The starting year.
-     * @param last The ending year.
+     * @param last  The ending year.
      * @return The percentage of books written between the specified years.
      */
-    public double whichPercentWrittenBetween(final int first, final int last)
+    public double whichPercentWrittenBetween(final int first,
+                                             final int last)
     {
-        final long count = novels.stream()
-                                 .filter(n -> n.getYearPublished() >= first && n.getYearPublished() <= last)
-                                 .count();
+        final long count;
+        count = novels.stream()
+                      .filter(n -> n.getYearPublished() >= first && n.getYearPublished() <= last)
+                      .count();
+
         return novels.isEmpty() ? NO_BOOKS_PERCENTAGE : (double) count / novels.size() * HAVE_BOOKS_PERCENTAGE;
     }
 
@@ -255,7 +261,8 @@ public class BookStore
     public List<Novel> getBooksThisLength(final int length)
     {
         return novels.stream()
-                     .filter(n -> n.getTitle().length() == length)
+                     .filter(n -> n.getTitle()
+                                   .length() == length)
                      .collect(Collectors.toList());
     }
 
