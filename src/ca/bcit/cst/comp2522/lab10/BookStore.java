@@ -1,4 +1,4 @@
-package ca.bcit.comp2522.lab10;
+package ca.bcit.cst.comp2522.lab10;
 
 import java.util.ArrayList;
 import java.util.Comparator;
