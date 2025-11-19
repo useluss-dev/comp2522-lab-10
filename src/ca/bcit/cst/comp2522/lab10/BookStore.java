@@ -14,6 +14,11 @@ import java.util.stream.Collectors;
 public class BookStore
 {
 
+
+    private static final int DECADE_LENGTH = 9;
+    private static final int NO_BOOKS_PERCENTAGE = 0;
+    private static final int HAVE_BOOKS_PERCENTAGE = 0;
+
     private final String           storeName;
     private final ArrayList<Novel> novels;
 
@@ -129,11 +134,6 @@ public class BookStore
 
     }
 
-    public void addNovel(final Novel novel)
-    {
-        novels.add(novel);
-    }
-
     /**
      * Prints every title in uppercase.
      */
@@ -175,7 +175,8 @@ public class BookStore
      */
     public void printGroupByDecade(final int decade)
     {
-        final int endYear = decade + 9;
+        final int endYear;
+        endYear = decade + DECADE_LENGTH;
         novels.stream()
               .filter(n -> n.getYearPublished() >= decade && n.getYearPublished() <= endYear)
               .map(Novel::getTitle)
@@ -230,7 +231,7 @@ public class BookStore
         final long count = novels.stream()
                                  .filter(n -> n.getYearPublished() >= first && n.getYearPublished() <= last)
                                  .count();
-        return novels.isEmpty() ? 0 : (double) count / novels.size() * 100;
+        return novels.isEmpty() ? NO_BOOKS_PERCENTAGE : (double) count / novels.size() * HAVE_BOOKS_PERCENTAGE;
     }
 
     /**
