@@ -28,7 +28,7 @@ class Novel
     {
         Validator.validateString(title, "title");
         Validator.validateString(author, "author");
-        Validator.validateIntInRange(yearPublished, 0, 2025, "yearPublished");
+        Validator.validateIntInRange(yearPublished, MIN_YEAR_PUBLISHED, MAX_YEAR_PUBLISHED, "yearPublished");
 
         this.title         = title;
         this.author        = author;
